@@ -3,8 +3,8 @@
 
 ## Create employee Table
 ```sql
-CREATE TABLE EMP (EMPNO NUMBER(4) PRIMARY KEY,ENAME VARCHAR2(10),JOB VARCHAR2(9),MGR NUMBER(4),
-HIREDATE DATE,SAL NUMBER(7,2),COMM NUMBER(7,2),DEPTNO NUMBER(2));
+CREATE TABLE EMP (EMPNO NUMBER(4) PRIMARY KEY,ENAME VARCHAR2(10),JOB VARCHAR2(9),
+MGR NUMBER(4),HIREDATE DATE,SAL NUMBER(7,2),COMM NUMBER(7,2),DEPTNO NUMBER(2));
 ```
 ## Insert the values
 ```sql
@@ -88,16 +88,20 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
 
 ### QUERY:
-
-```SELECT ename,job FROM EMP WHERE deptno = 10 AND job IN (SELECT job FROM EMP WHERE job = 'sales');```
+```
+SELECT ename,job FROM EMP
+ WHERE deptno = 10 AND job IN (SELECT job FROM EMP WHERE job = 'sales');
+```
 ### OUTPUT:
-
 ![Q3](https://github.com/vidhyadharan-03/EX-3-SubQueries-Views-and-Joins/assets/114286357/ae23ddd7-9b89-45a1-9ff2-d150f348587b)
 
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
 
 ### QUERY:
-```  create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;```
+```
+ create view empv5 as select EMPNO,ENAME,JOB 
+from EMP where DEPTNO=10;
+```
 
 ```SELECT * FROM empv5;```
 
@@ -109,7 +113,10 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
 
 ### QUERY:
-```create view empv30 AS select EMPNO,ENAME,SAL from EMP where DEPTNO=30;```
+```
+create view empv30 AS select EMPNO,ENAME,SAL
+from EMP where DEPTNO=30
+;```
 
 ```SELECT * FROM empv30;```
 
@@ -132,7 +139,8 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 
 ## Create a Customer1 Table
 ```sql
-CREATE TABLE Customer1 (customer_id INT,cust_name VARCHAR(20),city VARCHAR(20),grade INT,salesman_id INT);
+CREATE TABLE Customer1 (customer_id INT,cust_name VARCHAR(20),
+city VARCHAR(20),grade INT,salesman_id INT);
 ```
 ## Inserting Values to the Table
 ```sql
@@ -147,7 +155,8 @@ INSERT INTO Customer1 (customer_id, cust_name, city, grade, salesman_id) VALUES(
 ```
 ## Create a Salesperson1 table
 ```sql
-CREATE TABLE Salesman1 (salesman_id INT,name VARCHAR(20),city VARCHAR(20),commission DECIMAL(4,2));
+CREATE TABLE Salesman1 (salesman_id INT,name VARCHAR(20),
+city VARCHAR(20),commission DECIMAL(4,2));
 ```
 ## Inserting Values to the Table
 ```sql
@@ -161,18 +170,21 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
 
 ### QUERY:
-```select s.name,c.cust_name,s.city from salesman1 s ,customer1 c where s.city=c.city;```
-
+```
+select s.name,c.cust_name,s.city from salesman1 s ,
+customer1 c where s.city=c.city;
+```
 ### OUTPUT:
-
 ![Q7](https://github.com/vidhyadharan-03/EX-3-SubQueries-Views-and-Joins/assets/114286357/55f9b63d-84f2-4220-90d9-8626c0d47189)
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
 
 
 ### QUERY:
-```select s.name,c.cust_name,c.city,s.commission from salesman1 s inner join customer1 c on s.city=c.city where s.commission>0.13;```
-
+```
+select s.name,c.cust_name,c.city,s.commission from salesman1
+s inner join customer1 c on s.city=c.city where s.commission>0.13;
+```
 ### OUTPUT:
 
 ![Q8](https://github.com/vidhyadharan-03/EX-3-SubQueries-Views-and-Joins/assets/114286357/7b692aae-9a50-4a86-9784-c1159a315fd3)
@@ -190,9 +202,15 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson
 ### Q10) Perform Left and right join on both tables
 
 ### QUERY:
-```select s.name,c.cust_name,c.city,s.commission from salesman1 s left join customer1 c on s.salesman_id=c.salesman_id;```
+```
+select s.name,c.cust_name,c.city,s.commission from salesman1 s
+left join customer1 c on s.salesman_id=c.salesman_id;
+```
 
-```select s.name,c.cust_name,c.city,s.commission from salesman1 s right join customer1 c on s.salesman_id=c.salesman_id;```
+```
+select s.name,c.cust_name,c.city,s.commission from salesman1 s 
+right join customer1 c on s.salesman_id=c.salesman_id;
+```
 
 ### OUTPUT:
 # Left join:
